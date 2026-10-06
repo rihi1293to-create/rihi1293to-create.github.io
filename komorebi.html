@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>こもれび珈琲 | 自家焙煎珈琲と焼き菓子</title>
+<meta name="description" content="〇〇駅東口から徒歩5分。毎朝焙煎するコーヒーと、手づくりの焼き菓子の喫茶店。">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f2ea;
+    --white: #fffdf9;
+    --ink: #2e2219;
+    --sub: #75665a;
+    --accent: #b8673a;
+    --line: #e3d9cb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Sans JP", sans-serif;
+    background: var(--bg); color: var(--ink);
+    font-size: 15px; line-height: 1.9; letter-spacing: .03em;
+  }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  .wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
+  .mincho { font-family: "Shippori Mincho", serif; }
+  .en { font-family: "Cormorant Garamond", serif; font-style: italic; letter-spacing: .04em; }
+
+  .sample-bar { background: var(--ink); color: #d9cbb9; font-size: 11px; text-align: center; padding: 5px 12px; }
+
+  /* header */
+  header { background: var(--white); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 30; }
+  .head { display: flex; align-items: center; height: 64px; gap: 32px; }
+  .logo { display: flex; align-items: baseline; gap: 10px; }
+  .logo b { font-family: "Shippori Mincho", serif; font-size: 21px; font-weight: 700; letter-spacing: .12em; }
+  .logo small { font-size: 10px; color: var(--sub); letter-spacing: .15em; }
+  .gnav { display: none; gap: 28px; font-size: 13px; margin-left: auto; }
+  .gnav a:hover { color: var(--accent); }
+  .menu-btn { margin-left: auto; background: none; border: 0; width: 40px; height: 40px; display: grid; place-content: center; gap: 6px; cursor: pointer; }
+  .menu-btn span { width: 22px; height: 1.5px; background: var(--ink); display: block; }
+  .drawer { display: none; border-top: 1px solid var(--line); background: var(--white); }
+  .drawer.open { display: block; }
+  .drawer a { display: block; padding: 14px 20px; border-bottom: 1px solid var(--line); font-size: 14px; }
+
+  /* hero slider */
+  .hero { position: relative; height: min(78vh, 640px); min-height: 440px; overflow: hidden; background: #3a2c22; }
+  .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease; }
+  .slide.active { opacity: 1; }
+  .slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(20,12,6,.6)); }
+  .slide .copy { position: absolute; left: 0; right: 0; bottom: 56px; z-index: 2; color: #fff; }
+  .slide .date { font-size: 12px; letter-spacing: .2em; }
+  .slide h2 { font-family: "Shippori Mincho", serif; font-weight: 500; font-size: clamp(26px, 5vw, 44px); line-height: 1.5; margin: 6px 0 14px; }
+  .slide .more { font-size: 13px; border-bottom: 1px solid rgba(255,255,255,.7); padding-bottom: 2px; }
+  .dots { position: absolute; right: 20px; bottom: 24px; z-index: 3; display: flex; gap: 14px; color: rgba(255,255,255,.5); font-size: 12px; }
+  .dots button { background: none; border: 0; color: inherit; font: inherit; cursor: pointer; padding: 4px 0; border-bottom: 1px solid transparent; }
+  .dots button.active { color: #fff; border-color: #fff; }
+
+  /* news strip */
+  .strip { background: var(--white); border-bottom: 1px solid var(--line); }
+  .strip .wrap { display: flex; gap: 16px; align-items: center; padding: 14px 0; font-size: 13px; }
+  .strip .label { font-weight: 700; flex-shrink: 0; }
+  .strip time { color: var(--sub); flex-shrink: 0; }
+  .strip .t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  section { padding: 80px 0; }
+  .sec-head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 32px; gap: 16px; }
+  .sec-head h2 { font-family: "Shippori Mincho", serif; font-weight: 500; font-size: 26px; line-height: 1.4; }
+  .sec-head h2 .en { display: block; font-size: 15px; color: var(--accent); }
+  .link { font-size: 13px; white-space: nowrap; border-bottom: 1px solid var(--ink); padding-bottom: 1px; }
+
+  /* seasonal rail */
+  .rail { display: grid; grid-auto-flow: column; grid-auto-columns: 72%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; }
+  .item { scroll-snap-align: start; }
+  .item .ph { aspect-ratio: 4/5; overflow: hidden; background: #ddd; }
+  .item .ph img { transition: transform .6s; }
+  .item:hover .ph img { transform: scale(1.04); }
+  .badge { display: inline-block; font-size: 11px; color: var(--accent); border: 1px solid var(--accent); padding: 0 6px; margin: 14px 0 4px; }
+  .item h3 { font-size: 15px; font-weight: 500; line-height: 1.6; }
+  .item p { font-size: 13px; color: var(--sub); }
+
+  /* story */
+  .story { background: var(--white); }
+  .story .wrap { display: grid; gap: 32px; align-items: center; }
+  .story .ph { aspect-ratio: 3/2; overflow: hidden; }
+  .story h2 { font-family: "Shippori Mincho", serif; font-weight: 500; font-size: clamp(22px, 4vw, 30px); line-height: 1.6; margin: 8px 0 20px; }
+  .story p + p { margin-top: 1em; }
+  .story .link { display: inline-block; margin-top: 24px; }
+
+  /* menu */
+  .menu-grid { display: grid; gap: 40px; }
+  .menu-col h3 { font-family: "Shippori Mincho", serif; font-weight: 500; font-size: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--ink); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: baseline; }
+  .menu-col h3 .en { font-size: 14px; color: var(--sub); }
+  .menu-col li { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .menu-col li small { display: block; font-size: 12px; color: var(--sub); }
+  .menu-col .p { white-space: nowrap; }
+  .menu-note { font-size: 12px; color: var(--sub); margin-top: 24px; }
+
+  /* photos */
+  .photos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; }
+  .photos div { aspect-ratio: 1; overflow: hidden; }
+
+  /* news list */
+  .news li a { display: grid; grid-template-columns: 1fr; gap: 2px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .news li:first-child a { border-top: 1px solid var(--line); }
+  .news time { font-size: 12px; color: var(--sub); }
+  .news .cat { font-size: 11px; border: 1px solid var(--line); padding: 0 6px; margin-left: 8px; color: var(--sub); }
+  .news a:hover .ttl { color: var(--accent); }
+
+  /* shop */
+  .shop .wrap { display: grid; gap: 32px; }
+  .shop .ph { aspect-ratio: 4/3; overflow: hidden; }
+  .shop dl { display: grid; grid-template-columns: 6.5em 1fr; font-size: 14px; }
+  .shop dt, .shop dd { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .shop dt { color: var(--sub); }
+  .map { margin-top: 20px; height: 220px; background: #e9e1d5; display: grid; place-items: center; font-size: 12px; color: var(--sub); }
+
+  footer { background: var(--ink); color: #cbbba8; padding: 56px 0 96px; font-size: 13px; }
+  footer .wrap { display: grid; gap: 32px; }
+  footer .logo b { color: #fff; }
+  footer ul { display: grid; gap: 6px; }
+  footer .copy { font-size: 11px; border-top: 1px solid #4a3a2e; padding-top: 20px; }
+
+  .quick { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--white); border-top: 1px solid var(--line); }
+  .quick a { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0 10px; font-size: 11px; }
+  .quick a + a { border-left: 1px solid var(--line); }
+  .quick svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.5; }
+
+  @media (min-width: 560px) {
+    .rail { grid-auto-columns: 42%; }
+    .photos { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (min-width: 820px) {
+    .gnav { display: flex; }
+    .menu-btn, .drawer, .quick { display: none !important; }
+    .rail { grid-auto-columns: calc((100% - 48px) / 4); overflow: visible; }
+    .story .wrap { grid-template-columns: 1.2fr 1fr; gap: 64px; }
+    .menu-grid { grid-template-columns: repeat(3, 1fr); }
+    .photos { grid-template-columns: repeat(4, 1fr); }
+    .news li a { grid-template-columns: 11em 1fr; }
+    .shop .wrap { grid-template-columns: 1fr 1fr; gap: 64px; }
+    footer { padding-bottom: 56px; }
+    footer .wrap { grid-template-columns: 2fr 1fr 1fr; }
+    footer .copy { grid-column: 1 / -1; }
+    section { padding: 110px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-bar">架空の店舗で作成した制作サンプルです。写真はUnsplashの素材を使用しています。<a href="index.html" style="color:inherit;font-weight:700;margin-left:8px">← NORENのページに戻る</a></div>
+
+<header>
+  <div class="wrap head">
+    <a class="logo" href="#"><b>こもれび珈琲</b><small>KOMOREBI COFFEE</small></a>
+    <nav class="gnav">
+      <a href="#seasonal">季節のおすすめ</a>
+      <a href="#story">私たちのコーヒー</a>
+      <a href="#menu">メニュー</a>
+      <a href="#news">お知らせ</a>
+      <a href="#shop">店舗情報</a>
+    </nav>
+    <button class="menu-btn" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="drawer">
+    <a href="#seasonal">季節のおすすめ</a>
+    <a href="#story">私たちのコーヒー</a>
+    <a href="#menu">メニュー</a>
+    <a href="#news">お知らせ</a>
+    <a href="#shop">店舗情報</a>
+  </nav>
+</header>
+
+<div class="hero" aria-roledescription="carousel">
+  <div class="slide active">
+    <img src="k-hero1.jpg" alt="窓から光が入る店内">
+    <div class="copy wrap">
+      <p class="date">2026.10.1 THU —</p>
+      <h2>秋のブレンド「栗色」、<br>はじまります。</h2>
+      <a class="more" href="#seasonal">季節のおすすめを見る</a>
+    </div>
+  </div>
+  <div class="slide">
+    <img src="k-hero2.jpg" alt="焼きたてのスコーン">
+    <div class="copy wrap">
+      <p class="date">EVERY MORNING</p>
+      <h2>スコーンは、毎朝8時に<br>焼き上がります。</h2>
+      <a class="more" href="#menu">焼き菓子のメニュー</a>
+    </div>
+  </div>
+  <div class="slide">
+    <img src="k-hero3.jpg" alt="焙煎したてのコーヒー豆">
+    <div class="copy wrap">
+      <p class="date">OUR COFFEE</p>
+      <h2>その日の分だけ、<br>開店前に焙煎しています。</h2>
+      <a class="more" href="#story">私たちのコーヒーについて</a>
+    </div>
+  </div>
+  <div class="dots">
+    <button class="active" aria-label="1枚目">01</button>
+    <button aria-label="2枚目">02</button>
+    <button aria-label="3枚目">03</button>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <span class="label">お知らせ</span>
+    <time datetime="2026-09-24">2026.09.24</time>
+    <a class="t" href="#news">10月の定休日と、祝日の営業時間について</a>
+  </div>
+</div>
+
+<main>
+  <section id="seasonal">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="en">Seasonal</span>季節のおすすめ</h2>
+        <a class="link" href="#menu">メニュー一覧</a>
+      </div>
+      <div class="rail">
+        <a class="item" href="#menu">
+          <div class="ph"><img src="k-s1.jpg" alt="" loading="lazy"></div>
+          <span class="badge">10/1〜 期間限定</span>
+          <h3>秋のブレンド「栗色」</h3>
+          <p>¥600</p>
+        </a>
+        <a class="item" href="#menu">
+          <div class="ph"><img src="k-s2.jpg" alt="" loading="lazy"></div>
+          <span class="badge">数量限定</span>
+          <h3>和栗とほうじ茶のスコーン</h3>
+          <p>¥480</p>
+        </a>
+        <a class="item" href="#menu">
+          <div class="ph"><img src="k-s3.jpg" alt="" loading="lazy"></div>
+          <span class="badge">〜10/31</span>
+          <h3>メープルのアイスラテ</h3>
+          <p>¥680</p>
+        </a>
+        <a class="item" href="#menu">
+          <div class="ph"><img src="k-s4.jpg" alt="" loading="lazy"></div>
+          <span class="badge">豆の販売</span>
+          <h3>秋のブレンド 150g</h3>
+          <p>¥1,500</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="ph"><img src="k-story.jpg" alt="焙煎機に豆を入れる様子" loading="lazy"></div>
+      <div>
+        <p class="en" style="color:var(--accent)">Our Coffee</p>
+        <h2>焼きたての香りを、<br>いちばんいいタイミングで。</h2>
+        <p>お店の奥にある小さな焙煎機で、毎朝7時から、その日に使う分だけを焼いています。</p>
+        <p>豆は、中米と東アフリカの農園から届く4種類。季節ごとに配合を少しずつ変えながら、毎日飲んでも飽きない味を探しています。</p>
+        <a class="link" href="#menu">コーヒーのメニューを見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="en">Menu</span>メニュー</h2>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-col">
+          <h3>コーヒー <span class="en">Coffee</span></h3>
+          <ul>
+            <li><span>こもれびブレンド<small>深煎り</small></span><span class="p">¥550</span></li>
+            <li><span>本日のシングルオリジン<small>週替わり</small></span><span class="p">¥650</span></li>
+            <li><span>カフェラテ<small>ホット／アイス</small></span><span class="p">¥600</span></li>
+            <li><span>カフェオレ</span><span class="p">¥580</span></li>
+            <li><span>自家製レモネード</span><span class="p">¥580</span></li>
+          </ul>
+        </div>
+        <div class="menu-col">
+          <h3>焼き菓子 <span class="en">Bake</span></h3>
+          <ul>
+            <li><span>プレーンスコーン<small>クロテッドクリームとジャム</small></span><span class="p">¥420</span></li>
+            <li><span>季節のタルト</span><span class="p">¥580</span></li>
+            <li><span>かためのプリン</span><span class="p">¥480</span></li>
+            <li><span>バスクチーズケーキ</span><span class="p">¥550</span></li>
+          </ul>
+        </div>
+        <div class="menu-col">
+          <h3>お食事 <span class="en">Food</span></h3>
+          <ul>
+            <li><span>キッシュプレート<small>11:30〜14:00／スープ付き</small></span><span class="p">¥1,200</span></li>
+            <li><span>厚切りたまごサンド</span><span class="p">¥850</span></li>
+            <li><span>トーストモーニング<small>8:00〜10:30／ドリンク代＋</small></span><span class="p">¥150</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="menu-note">表示価格はすべて税込です。テイクアウトもできます（お食事の一部を除く）。</p>
+    </div>
+  </section>
+
+  <div class="photos">
+    <div><img src="k-p1.jpg" alt="窓際の席" loading="lazy"></div>
+    <div><img src="k-p2.jpg" alt="カプチーノ" loading="lazy"></div>
+    <div><img src="k-p3.jpg" alt="店内のテーブル席" loading="lazy"></div>
+    <div><img src="k-hero2.jpg" alt="スコーン" loading="lazy"></div>
+  </div>
+
+  <section id="news">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2><span class="en">News</span>お知らせ</h2>
+        <a class="link" href="#">Instagramで最新情報</a>
+      </div>
+      <ul class="news">
+        <li><a href="#"><time datetime="2026-09-24">2026.09.24<span class="cat">営業</span></time><span class="ttl">10月の定休日と、祝日の営業時間について</span></a></li>
+        <li><a href="#"><time datetime="2026-09-18">2026.09.18<span class="cat">メニュー</span></time><span class="ttl">10月1日から、秋のブレンド「栗色」の提供をはじめます</span></a></li>
+        <li><a href="#"><time datetime="2026-09-05">2026.09.05<span class="cat">イベント</span></time><span class="ttl">10月11日（日）ハンドドリップの小さな教室を開きます（定員6名）</span></a></li>
+        <li><a href="#"><time datetime="2026-08-20">2026.08.20<span class="cat">お店</span></time><span class="ttl">窓際のカウンター席に電源を増やしました</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="shop" id="shop" style="background:var(--white)">
+    <div class="wrap">
+      <div class="ph"><img src="k-shop.jpg" alt="店内の様子" loading="lazy"></div>
+      <div>
+        <div class="sec-head" style="margin-bottom:16px"><h2><span class="en">Shop</span>店舗情報</h2></div>
+        <dl>
+          <dt>住所</dt><dd>〒000-0000 〇〇市〇〇町1-2-3 1F</dd>
+          <dt>アクセス</dt><dd>〇〇駅 東口から徒歩5分</dd>
+          <dt>営業時間</dt><dd>8:00〜18:00（L.O. 17:30）</dd>
+          <dt>定休日</dt><dd>水曜日</dd>
+          <dt>席数</dt><dd>14席</dd>
+          <dt>電話</dt><dd>000-000-0000</dd>
+          <dt>その他</dt><dd>全席禁煙／Wi-Fi・電源あり／キャッシュレス対応</dd>
+        </dl>
+        <div class="map">Googleマップ（本番ではお店の地図を表示）</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#"><b>こもれび珈琲</b></a>
+      <p style="margin-top:12px">〒000-0000 〇〇市〇〇町1-2-3 1F<br>8:00〜18:00／水曜定休</p>
+    </div>
+    <ul>
+      <li><a href="#seasonal">季節のおすすめ</a></li>
+      <li><a href="#story">私たちのコーヒー</a></li>
+      <li><a href="#menu">メニュー</a></li>
+    </ul>
+    <ul>
+      <li><a href="#news">お知らせ</a></li>
+      <li><a href="#shop">店舗情報</a></li>
+      <li><a href="#">Instagram</a></li>
+    </ul>
+    <p class="copy">© KOMOREBI COFFEE（架空の店舗・制作サンプル）　Photos: Unsplash　／　Site by NOREN</p>
+  </div>
+</footer>
+
+<nav class="quick" aria-label="クイックメニュー">
+  <a href="#shop"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>電話</a>
+  <a href="#shop"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>アクセス</a>
+  <a href="#menu"><svg viewBox="0 0 24 24"><path d="M4 9h13v5a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6zM17 11h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3"/></svg>メニュー</a>
+</nav>
+
+<script>
+  // スライド
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dots button');
+  let cur = 0, timer;
+  function show(i) {
+    slides[cur].classList.remove('active'); dots[cur].classList.remove('active');
+    cur = i;
+    slides[cur].classList.add('active'); dots[cur].classList.add('active');
+  }
+  function start() { timer = setInterval(() => show((cur + 1) % slides.length), 6000); }
+  dots.forEach((d, i) => d.addEventListener('click', () => { clearInterval(timer); show(i); start(); }));
+  start();
+
+  // スマホのメニュー
+  const btn = document.querySelector('.menu-btn');
+  const drawer = document.querySelector('.drawer');
+  btn.addEventListener('click', () => {
+    const open = drawer.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+</script>
+</body>
+</html>

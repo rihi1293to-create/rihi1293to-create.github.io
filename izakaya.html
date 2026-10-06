@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>とり天 ゆげ（制作サンプル）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+1p:wght@400;500;700&display=swap">
+<style>
+/* 単一テーマ：赤ちょうちんと白木のカウンター。明るい生成りに、朱と墨。 */
+:root {
+  --bg: #fbf7ef; --ink: #231a16; --muted: #6d5f55; --line: #e5dccd; --shu: #c8432b; --shu-deep: #8f2a19; --yellow: #f2c14e; --card: #ffffff;
+  --display: "Dela Gothic One", "Hiragino Kaku Gothic StdN", sans-serif;
+  --body: "M PLUS 1p", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); line-height: 1.8; padding-top: env(safe-area-inset-top, 0px); }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.wrap { max-width: 980px; margin-inline: auto; padding-inline: clamp(16px, 5vw, 36px); }
+h1, h2, h3 { margin: 0; line-height: 1.35; text-wrap: balance; }
+p { margin: 0; }
+.demo-bar { background: #233a5e; color: #fff; font-size: 12px; text-align: center; padding: 6px 16px; }
+.demo-bar a { font-weight: 700; }
+.hero { background: linear-gradient(90deg, rgba(35,26,22,.92), rgba(35,26,22,.55) 60%, rgba(35,26,22,.25)), url("i-hero.jpg") center/cover; color: #fff; padding-block: clamp(56px, 10vw, 100px); position: relative; overflow: hidden; }
+.hero::after { content: ""; position: absolute; right: -60px; top: -60px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, var(--yellow) 0 30%, transparent 70%); opacity: .55; }
+.hero .wrap { position: relative; z-index: 1; display: grid; gap: 16px; }
+.hero .sub { font-weight: 700; letter-spacing: .2em; font-size: 13px; }
+.hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(40px, 9vw, 84px); letter-spacing: .06em; }
+.hero p { max-width: 28em; font-size: 17px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 22px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+.btn-y { background: var(--yellow); color: var(--ink); }
+.btn-w { background: #fff; color: var(--shu-deep); }
+.info { background: var(--ink); color: #fff; }
+.info .wrap { display: flex; flex-wrap: wrap; gap: 8px 28px; padding-block: 14px; font-size: 14px; }
+.info b { color: var(--yellow); margin-right: 6px; }
+section { padding-block: clamp(56px, 8vw, 88px); }
+.title { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 28px; }
+.title h2 { font-family: var(--display); font-weight: 400; font-size: clamp(26px, 4vw, 36px); }
+.toggle { display: inline-flex; border: 2px solid var(--ink); border-radius: 999px; overflow: hidden; }
+.toggle button { background: transparent; border: 0; padding: 6px 16px; font: 700 13px var(--body); cursor: pointer; color: var(--ink); }
+.toggle button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: grid; min-width: 0; }
+.pic { aspect-ratio: 3 / 2; max-width: 100%; display: grid; place-items: end start; padding: 10px; font-size: 11px; color: rgba(255,255,255,.85); letter-spacing: .1em; }
+.f1 { background: url("i-toriten.jpg") center 70%/cover; }
+.f2 { background: url("i-karaage.jpg") center/cover; }
+.f3 { background: url("i-ryukyu.jpg") center/cover; }
+.f4 { background: url("i-pot.jpg") center/cover; }
+.f5 { background: url("i-sushi.jpg") center/cover; }
+.f6 { background: url("i-sake.jpg") center 75%/cover; }
+.body { padding: 14px 16px 18px; display: grid; gap: 4px; }
+.row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.row h3 { font-size: 17px; min-width: 0; }
+.yen { font-weight: 700; color: var(--shu-deep); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.desc { color: var(--muted); font-size: 14px; }
+.tag { justify-self: start; background: var(--yellow); font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 4px; }
+.note { margin-top: 16px; color: var(--muted); font-size: 13px; }
+.voice { background: #fff; border-block: 1px solid var(--line); }
+.points { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
+.point { display: grid; gap: 8px; }
+.point h3 { font-size: 19px; color: var(--shu-deep); }
+.point p { color: var(--muted); font-size: 15px; }
+.visit { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; align-items: start; }
+dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 18px; }
+dt { font-weight: 700; }
+dd { margin: 0; color: var(--muted); }
+.mapbox { aspect-ratio: 16 / 10; max-width: 100%; border-radius: 12px; border: 2px dashed var(--line); display: grid; place-items: center; color: var(--muted); font-size: 13px; background: #fff; }
+.sticky-call { position: sticky; bottom: 0; background: var(--shu); padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 10px; justify-content: center; }
+.sticky-call .btn { flex: 1; max-width: 240px; justify-content: center; }
+footer { text-align: center; font-size: 12px; color: var(--muted); padding: 24px 16px; }
+</style>
+</head>
+<body>
+<div class="demo-bar">これはNORENの制作サンプルです（架空のお店）。<a href="index.html">← NORENのページに戻る</a></div>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="sub" data-i18n="sub">別府駅から歩いて3分</p>
+    <h1>とり天 ゆげ</h1>
+    <p data-i18n="lead">大分名物のとり天を、注文が入ってから一枚ずつ揚げています。地元の焼酎と地酒もそろえて、夜遅くまで開いています。</p>
+    <div class="hero-actions">
+      <a class="btn btn-y" href="#visit" data-i18n="b1">電話で予約する</a>
+      <a class="btn btn-w" href="#visit" data-i18n="b2">Googleマップで見る</a>
+    </div>
+  </div>
+</div>
+<div class="info">
+  <div class="wrap">
+    <span><b data-i18n="i1">営業</b>17:00〜24:00</span>
+    <span><b data-i18n="i2">定休日</b><span data-i18n="i2v">水曜日</span></span>
+    <span><b data-i18n="i3">席</b><span data-i18n="i3v">カウンター8席・座敷12席</span></span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="title">
+      <h2 data-i18n="mt">おしながき</h2>
+      <div class="toggle" role="group" aria-label="Menu language">
+        <button type="button" data-lang="ja" aria-pressed="true">日本語</button>
+        <button type="button" data-lang="en" aria-pressed="false">English</button>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="item"><div class="pic f1" role="img" aria-label=""></div><div class="body"><span class="tag" data-i18n="pop">人気No.1</span><div class="row"><h3 data-i18n="m1">とり天（ポン酢・からし）</h3><span class="yen">¥780</span></div><p class="desc" data-i18n="m1d">大分のソウルフード。衣はふわっと、中はしっとり。</p></div></div>
+      <div class="item"><div class="pic f2" role="img" aria-label=""></div><div class="body"><div class="row"><h3 data-i18n="m2">唐揚げ（中津風）</h3><span class="yen">¥720</span></div><p class="desc" data-i18n="m2d">にんにく醤油に一晩漬け込んだ、骨なしの唐揚げ。</p></div></div>
+      <div class="item"><div class="pic f3" role="img" aria-label=""></div><div class="body"><div class="row"><h3 data-i18n="m3">りゅうきゅう</h3><span class="yen">¥880</span></div><p class="desc" data-i18n="m3d">その日の刺身を、ごま醤油に漬けた大分の郷土料理。</p></div></div>
+      <div class="item"><div class="pic f4" role="img" aria-label=""></div><div class="body"><div class="row"><h3 data-i18n="m4">だんご汁</h3><span class="yen">¥600</span></div><p class="desc" data-i18n="m4d">平たい手延べの団子と野菜の味噌汁。〆にどうぞ。</p></div></div>
+      <div class="item"><div class="pic f5" role="img" aria-label=""></div><div class="body"><div class="row"><h3 data-i18n="m5">関あじの刺身</h3><span class="yen" data-i18n="m5p">時価</span></div><p class="desc" data-i18n="m5d">入荷した日だけ。来店前に電話で確認できます。</p></div></div>
+      <div class="item"><div class="pic f6" role="img" aria-label=""></div><div class="body"><div class="row"><h3 data-i18n="m6">麦焼酎・大分の地酒</h3><span class="yen">¥500〜</span></div><p class="desc" data-i18n="m6d">県内の蔵元を中心に、20種類以上そろえています。</p></div></div>
+    </div>
+    <p class="note" data-i18n="note">価格はすべて税込です。お通し代はいただいていません。</p>
+  </div>
+</section>
+
+<section class="voice">
+  <div class="wrap">
+    <div class="title"><h2 data-i18n="pt">ゆげのこだわり</h2></div>
+    <div class="points">
+      <div class="point"><h3 data-i18n="p1t">揚げたてだけを出す</h3><p data-i18n="p1p">作り置きはしません。注文から5分ほどで、熱々のとり天をお出しします。</p></div>
+      <div class="point"><h3 data-i18n="p2t">ひとりでも入りやすい</h3><p data-i18n="p2p">カウンター席が中心です。出張や旅行のおひとりさまも歓迎しています。</p></div>
+      <div class="point"><h3 data-i18n="p3t">英語メニューあり</h3><p data-i18n="p3p">英語のメニューと、写真で選べる注文表をご用意しています。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap visit">
+    <div>
+      <div class="title"><h2 data-i18n="vt">お店の場所</h2></div>
+      <dl>
+        <dt data-i18n="d1">住所</dt><dd data-i18n="d1v">大分県別府市駅前町（サンプル）</dd>
+        <dt data-i18n="d2">電話</dt><dd>0977-00-0000</dd>
+        <dt data-i18n="d3">予約</dt><dd data-i18n="d3v">お電話で。4名以上は前日までがおすすめです</dd>
+        <dt data-i18n="d4">支払い</dt><dd data-i18n="d4v">現金・カード・PayPay</dd>
+      </dl>
+    </div>
+    <div class="mapbox" data-i18n="map">ここにGoogleマップが入ります</div>
+  </div>
+</section>
+
+<div class="sticky-call">
+  <a class="btn btn-y" href="#visit" data-i18n="c1">電話する</a>
+  <a class="btn btn-w" href="#visit" data-i18n="c2">地図を見る</a>
+</div>
+<footer>とり天 ゆげ（架空のお店・制作サンプル） ｜ Site by NOREN</footer>
+
+<script>
+const EN = { sub:"3 min walk from Beppu Station", lead:"Toriten, Oita's famous chicken tempura, fried fresh to order one piece at a time. Local shochu and sake, open late.", b1:"Call to reserve", b2:"Open in Google Maps",
+  i1:"Hours", i2:"Closed", i2v:"Wednesdays", i3:"Seats", i3v:"8 counter seats, 12 tatami seats",
+  mt:"Menu", pop:"No.1", m1:"Toriten (chicken tempura)", m1d:"Oita's soul food. Light batter, juicy inside. Served with ponzu and mustard.", m2:"Karaage (Nakatsu style)", m2d:"Boneless fried chicken marinated overnight in garlic soy sauce.",
+  m3:"Ryukyu", m3d:"Today's sashimi marinated in sesame soy sauce. A local Oita dish.", m4:"Dango-jiru", m4d:"Miso soup with flat hand-stretched dumplings and vegetables.", m5:"Seki-aji sashimi", m5p:"Market price", m5d:"Only on days it arrives. Call ahead to check.", m6:"Barley shochu & Oita sake", m6d:"Over 20 kinds, mainly from local breweries.",
+  note:"All prices include tax. No table charge.", pt:"What we care about", p1t:"Always freshly fried", p1p:"Nothing is made in advance. Your toriten arrives hot, about 5 minutes after ordering.", p2t:"Easy for solo guests", p2p:"Mostly counter seats. Solo travelers are very welcome.", p3t:"English menu available", p3p:"We have an English menu and a picture menu for easy ordering.",
+  vt:"Find us", d1:"Address", d1v:"Ekimae-machi, Beppu, Oita (sample)", d2:"Phone", d3:"Booking", d3v:"By phone. For 4 or more, please book a day ahead.", d4:"Payment", d4v:"Cash, cards, PayPay", map:"Google Map goes here", c1:"Call", c2:"Map" };
+const nodes = [...document.querySelectorAll("[data-i18n]")];
+nodes.forEach(n => n.dataset.ja = n.textContent);
+document.querySelectorAll(".toggle button").forEach(b => b.addEventListener("click", () => {
+  const en = b.dataset.lang === "en";
+  nodes.forEach(n => { n.textContent = en ? (EN[n.dataset.i18n] ?? n.dataset.ja) : n.dataset.ja; });
+  document.querySelectorAll(".toggle button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+  document.documentElement.lang = en ? "en" : "ja";
+}));
+</script>
+</body>
+</html>

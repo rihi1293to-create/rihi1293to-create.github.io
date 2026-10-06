@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HALF COURT COFFEE — Coffee Stand</title>
+<meta name="description" content="駅前のコーヒースタンド。エスプレッソドリンクと、自家焙煎の豆。7:00オープン、テイクアウト中心。">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #111111;
+    --white: #ffffff;
+    --gray: #f2f2f0;
+    --mid: #7a7a76;
+    --orange: #ff5b1f;
+    --line: #dededa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Noto Sans JP", sans-serif; background: var(--white); color: var(--black); font-size: 15px; line-height: 1.8; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  .wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
+  .ar { font-family: "Archivo", sans-serif; letter-spacing: -.01em; }
+
+  .sample-bar { background: var(--gray); color: var(--mid); font-size: 11px; text-align: center; padding: 5px 12px; }
+
+  header { position: sticky; top: 0; z-index: 30; background: var(--white); border-bottom: 1px solid var(--black); }
+  .head { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .logo { font-family: "Archivo", sans-serif; font-weight: 900; font-size: 18px; letter-spacing: .02em; display: flex; align-items: center; gap: 8px; }
+  .logo svg { width: 22px; height: 22px; }
+  .head nav { display: none; gap: 28px; font-size: 13px; font-family: "Archivo", sans-serif; font-weight: 500; }
+  .head nav a:hover { color: var(--orange); }
+  .open-now { font-size: 12px; font-family: "Archivo", sans-serif; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+  .open-now i { width: 8px; height: 8px; border-radius: 50%; background: #bbb; display: block; }
+  .open-now.on i { background: #1fb05a; }
+
+  /* hero */
+  .hero { display: grid; border-bottom: 1px solid var(--black); }
+  .hero .txt { padding: 40px 16px 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+  .hero h1 { font-family: "Archivo", sans-serif; font-weight: 900; font-size: clamp(48px, 13vw, 128px); line-height: .92; letter-spacing: -.035em; text-transform: uppercase; }
+  .hero h1 em { font-style: normal; color: var(--orange); }
+  .hero .jp { font-size: 15px; max-width: 26em; }
+  .hero .cta { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; font-weight: 700; font-size: 14px; border: 1.5px solid var(--black); }
+  .btn.fill { background: var(--black); color: var(--white); }
+  .btn.fill:hover { background: var(--orange); border-color: var(--orange); }
+  .btn:not(.fill):hover { background: var(--gray); }
+  .hero .ph { aspect-ratio: 4/5; overflow: hidden; border-top: 1px solid var(--black); }
+
+  /* ticker */
+  .ticker { background: var(--orange); color: var(--black); overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--black); }
+  .ticker div { display: inline-block; padding: 10px 0; font-family: "Archivo", sans-serif; font-weight: 800; font-size: 15px; animation: tick 28s linear infinite; }
+  .ticker span { margin: 0 20px; }
+  @keyframes tick { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .ticker div { animation: none; } }
+
+  section { padding: 72px 0; border-bottom: 1px solid var(--black); }
+  .label { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; display: flex; gap: 10px; align-items: center; margin-bottom: 12px; }
+  .label::before { content: ""; width: 10px; height: 10px; background: var(--orange); border-radius: 50%; }
+  h2 { font-family: "Archivo", sans-serif; font-weight: 900; font-size: clamp(36px, 8vw, 72px); line-height: 1; letter-spacing: -.03em; text-transform: uppercase; margin-bottom: 36px; }
+
+  /* menu board */
+  .board { display: grid; gap: 40px; }
+  .board h3 { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 14px; letter-spacing: .08em; border-bottom: 2px solid var(--black); padding-bottom: 8px; display: flex; justify-content: space-between; }
+  .board h3 span { color: var(--mid); font-weight: 500; }
+  .board li { display: grid; grid-template-columns: 1fr auto auto; gap: 16px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .board li b { font-weight: 700; }
+  .board li small { display: block; font-size: 12px; color: var(--mid); font-weight: 400; }
+  .board .p { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 17px; min-width: 3.2em; text-align: right; }
+  .board .p.l { color: var(--mid); font-weight: 500; font-size: 14px; }
+  .pick { color: var(--orange); font-family: "Archivo", sans-serif; font-size: 11px; font-weight: 800; margin-left: 6px; }
+
+  /* photo row */
+  .strip { display: grid; grid-template-columns: repeat(2, 1fr); border-bottom: 1px solid var(--black); }
+  .strip div { aspect-ratio: 1; overflow: hidden; }
+  .strip div + div { border-left: 1px solid var(--black); }
+
+  /* beans */
+  .beans { background: var(--gray); }
+  .bean-grid { display: grid; gap: 16px; }
+  .bean { background: var(--white); border: 1px solid var(--black); display: grid; grid-template-rows: auto 1fr; }
+  .bean .ph { aspect-ratio: 16/10; overflow: hidden; border-bottom: 1px solid var(--black); }
+  .bean .body { padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .bean .origin { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 22px; line-height: 1.1; text-transform: uppercase; }
+  .bean .notes { font-size: 13px; color: var(--mid); }
+  .meter { display: flex; gap: 3px; margin: 6px 0; }
+  .meter i { flex: 1; height: 6px; background: var(--line); }
+  .meter i.on { background: var(--black); }
+  .bean .row { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; font-size: 13px; }
+  .bean .row b { font-family: "Archivo", sans-serif; font-size: 18px; }
+
+  /* order */
+  .order .wrap { display: grid; gap: 32px; }
+  .steps { display: grid; gap: 0; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 56px 1fr; padding: 18px 0; border-top: 1px solid var(--line); }
+  .steps li::before { content: "0" counter(s); font-family: "Archivo", sans-serif; font-weight: 900; font-size: 28px; line-height: 1; color: var(--orange); }
+  .steps b { display: block; }
+  .steps span { font-size: 13px; color: var(--mid); }
+
+  /* spot */
+  .spot .wrap { display: grid; gap: 32px; }
+  .hours { font-family: "Archivo", sans-serif; }
+  .hours div { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
+  .hours div.today { font-weight: 800; }
+  .hours div.today::after { content: "TODAY"; font-size: 10px; background: var(--orange); color: var(--black); padding: 0 6px; margin-left: 8px; align-self: center; }
+  .addr { font-size: 14px; margin-top: 20px; }
+  .map { aspect-ratio: 4/3; background: var(--gray); border: 1px solid var(--black); display: grid; place-items: center; font-size: 12px; color: var(--mid); position: relative; overflow: hidden; }
+
+  footer { background: var(--black); color: #bbb; padding: 48px 0 100px; font-size: 12px; }
+  footer .big { font-family: "Archivo", sans-serif; font-weight: 900; font-size: clamp(40px, 11vw, 140px); line-height: .9; color: var(--white); letter-spacing: -.04em; margin-bottom: 32px; }
+  footer .cols { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+
+  .fab { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 40; background: var(--black); color: var(--white); text-align: center; padding: 15px; font-weight: 700; font-size: 14px; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+
+  @media (min-width: 600px) {
+    .strip { grid-template-columns: repeat(4, 1fr); }
+    .bean-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .head nav { display: flex; }
+    .hero { grid-template-columns: 1.15fr .85fr; min-height: calc(100vh - 110px); }
+    .hero .txt { padding: 56px 40px 48px 0; padding-left: max(16px, (100vw - 1200px) / 2); }
+    .hero .ph { aspect-ratio: auto; border-top: 0; border-left: 1px solid var(--black); }
+    .board { grid-template-columns: 1fr 1fr; gap: 48px 72px; }
+    .order .wrap, .spot .wrap { grid-template-columns: 1fr 1fr; gap: 72px; }
+    .fab { display: none; }
+    footer { padding-bottom: 48px; }
+    section { padding: 110px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-bar">架空の店舗で作成した制作サンプルです。写真はUnsplashの素材を使用しています。<a href="index.html" style="color:inherit;font-weight:700;margin-left:8px">← NORENのページに戻る</a></div>
+
+<header>
+  <div class="wrap head">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2v20M5 5c3 3 3 11 0 14M19 5c-3 3-3 11 0 14"/></svg>
+      HALF COURT COFFEE
+    </a>
+    <nav>
+      <a href="#menu">MENU</a>
+      <a href="#beans">BEANS</a>
+      <a href="#order">ORDER</a>
+      <a href="#spot">SPOT</a>
+    </nav>
+    <span class="open-now" id="open"><i></i><span>—</span></span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="txt">
+    <h1>Good coffee,<br><em>fast</em> break.</h1>
+    <div>
+      <p class="jp">駅前ロータリーの角にある、テイクアウト中心のコーヒースタンド。朝7時から、急いでいる日もちゃんとおいしい一杯を。</p>
+      <div class="cta" style="margin-top:20px">
+        <a class="btn fill" href="#order">LINEで事前注文 →</a>
+        <a class="btn" href="#menu">メニュー</a>
+      </div>
+    </div>
+  </div>
+  <div class="ph"><img src="h-hero.jpg" alt="エスプレッソマシンで作業するバリスタ"></div>
+</div>
+
+<div class="ticker" aria-hidden="true">
+  <div>
+    <span>ESPRESSO ¥380</span><span>●</span><span>LATTE ¥500</span><span>●</span><span>ICED AMERICANO ¥450</span><span>●</span><span>OPEN 7:00</span><span>●</span><span>MY CUP −¥30</span><span>●</span>
+    <span>ESPRESSO ¥380</span><span>●</span><span>LATTE ¥500</span><span>●</span><span>ICED AMERICANO ¥450</span><span>●</span><span>OPEN 7:00</span><span>●</span><span>MY CUP −¥30</span><span>●</span>
+  </div>
+</div>
+
+<main>
+  <section id="menu">
+    <div class="wrap">
+      <p class="label">Menu</p>
+      <h2>What's on<br>the board</h2>
+      <div class="board">
+        <div>
+          <h3>ESPRESSO <span>S / L</span></h3>
+          <ul>
+            <li><b>エスプレッソ</b><span class="p l">—</span><span class="p">380</span></li>
+            <li><b>アメリカーノ<small>ホット／アイス</small></b><span class="p">420</span><span class="p">480</span></li>
+            <li><b>カフェラテ<span class="pick">BEST</span><small>オーツミルク +50</small></b><span class="p">500</span><span class="p">560</span></li>
+            <li><b>フラットホワイト</b><span class="p">520</span><span class="p l">—</span></li>
+            <li><b>モカ<small>自家製チョコソース</small></b><span class="p">560</span><span class="p">620</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>FILTER &amp; OTHERS <span>S / L</span></h3>
+          <ul>
+            <li><b>本日のドリップ<small>豆は日替わり</small></b><span class="p">400</span><span class="p">460</span></li>
+            <li><b>コールドブリュー</b><span class="p l">—</span><span class="p">520</span></li>
+            <li><b>ほうじ茶ラテ</b><span class="p">520</span><span class="p">580</span></li>
+            <li><b>クロワッサン<small>毎朝近くのベーカリーから</small></b><span class="p l">—</span><span class="p">320</span></li>
+            <li><b>バナナブレッド</b><span class="p l">—</span><span class="p">380</span></li>
+          </ul>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--mid);margin-top:24px">税込価格。マイカップ持参で30円引き。</p>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div><img src="h-p1.jpg" alt="ラテを注ぐ手元" loading="lazy"></div>
+    <div><img src="h-p2.jpg" alt="アイスラテ" loading="lazy"></div>
+    <div><img src="h-p3.jpg" alt="ラテアート" loading="lazy"></div>
+    <div><img src="h-p4.jpg" alt="コーヒーで乾杯" loading="lazy"></div>
+  </div>
+
+  <section class="beans" id="beans">
+    <div class="wrap">
+      <p class="label">Beans</p>
+      <h2>Take it<br>home</h2>
+      <div class="bean-grid">
+        <article class="bean">
+          <div class="ph"><img src="h-b1.jpg" alt="" loading="lazy"></div>
+          <div class="body">
+            <p class="origin">House Blend</p>
+            <p class="notes">ミルクチョコ／ナッツ／キャラメル</p>
+            <div class="meter" aria-label="焙煎度 5段階中4"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+            <div class="row"><span>200g</span><b>¥1,600</b></div>
+          </div>
+        </article>
+        <article class="bean">
+          <div class="ph"><img src="h-b2.jpg" alt="" loading="lazy"></div>
+          <div class="body">
+            <p class="origin">Ethiopia<br>Guji</p>
+            <p class="notes">ピーチ／ジャスミン／紅茶</p>
+            <div class="meter" aria-label="焙煎度 5段階中2"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+            <div class="row"><span>200g</span><b>¥1,900</b></div>
+          </div>
+        </article>
+        <article class="bean">
+          <div class="ph"><img src="h-b3.jpg" alt="" loading="lazy"></div>
+          <div class="body">
+            <p class="origin">Guatemala<br>Huehuetenango</p>
+            <p class="notes">オレンジ／ブラウンシュガー</p>
+            <div class="meter" aria-label="焙煎度 5段階中3"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+            <div class="row"><span>200g</span><b>¥1,800</b></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="order" id="order">
+    <div class="wrap">
+      <div>
+        <p class="label">Order ahead</p>
+        <h2>Skip<br>the line</h2>
+        <p>LINEで事前に注文すれば、並ばずに受け取れます。通勤前の3分をまるごと節約。</p>
+        <a class="btn fill" style="margin-top:24px" href="#">LINE友だち追加 →</a>
+      </div>
+      <ol class="steps">
+        <li><div><b>LINEでメニューを選ぶ</b><span>サイズ・ミルクの変更もその場で</span></div></li>
+        <li><div><b>受け取り時間を指定</b><span>最短5分後から、10分刻みで選べます</span></div></li>
+        <li><div><b>店頭の専用棚で受け取り</b><span>お支払いは注文時に完了しています</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="spot" id="spot">
+    <div class="wrap">
+      <div>
+        <p class="label">Spot</p>
+        <h2>Find us</h2>
+        <div class="hours" id="hours">
+          <div data-d="1,2,3,4,5"><span>MON — FRI</span><span>7:00 — 18:00</span></div>
+          <div data-d="6"><span>SAT</span><span>8:00 — 17:00</span></div>
+          <div data-d="0"><span>SUN</span><span>CLOSED</span></div>
+        </div>
+        <p class="addr">〒000-0000 〇〇市〇〇1-1-1 〇〇ビル1F<br>〇〇駅 南口ロータリー前（徒歩1分）<br>席数：立ち飲みカウンター4席</p>
+      </div>
+      <div class="map">GOOGLE MAP（本番ではお店の地図を表示）</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="big">HALF COURT<br>COFFEE</p>
+    <div class="cols">
+      <p>© HALF COURT COFFEE（架空の店舗・制作サンプル）　Photos: Unsplash　／　Site by NOREN</p>
+      <p>Instagram　／　LINE</p>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" href="#order">LINEで事前注文する</a>
+
+<script>
+  // 営業中表示と「今日」の行
+  const now = new Date(), d = now.getDay(), m = now.getHours() * 60 + now.getMinutes();
+  const open = d === 0 ? false : d === 6 ? (m >= 480 && m < 1020) : (m >= 420 && m < 1080);
+  const el = document.getElementById('open');
+  el.classList.toggle('on', open);
+  el.querySelector('span').textContent = open ? 'OPEN NOW' : 'CLOSED';
+  document.querySelectorAll('#hours [data-d]').forEach(row => {
+    if (row.dataset.d.split(',').includes(String(d))) row.classList.add('today');
+  });
+</script>
+</body>
+</html>

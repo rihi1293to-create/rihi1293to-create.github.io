@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>純喫茶 灯（あかり）｜昭和から続く、ネルドリップの喫茶店</title>
+<meta name="description" content="昭和五十三年創業。ネルドリップの珈琲と、固めのプリン、ナポリタンの純喫茶「灯」。">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1f3a2f;
+    --green-dark: #152a21;
+    --paper: #f2e9d6;
+    --paper-2: #e9dcc2;
+    --red: #9e2f2a;
+    --gold: #b58f4c;
+    --ink: #2a211a;
+    --sub: #6d5f50;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Serif JP", serif;
+    background: var(--paper); color: var(--ink);
+    font-size: 15px; line-height: 2; letter-spacing: .05em;
+  }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  a { color: inherit; }
+  ul { list-style: none; }
+  .wrap { width: min(980px, 100% - 40px); margin-inline: auto; }
+  .old { font-family: "Zen Old Mincho", serif; }
+
+  .sample-bar { background: #000; color: #bba; font-size: 11px; text-align: center; padding: 5px 12px; font-family: sans-serif; letter-spacing: 0; }
+
+  /* 看板のようなヘッダー */
+  .sign { background: var(--green); color: var(--paper); text-align: center; padding: 28px 0 22px; border-bottom: 4px double var(--gold); }
+  .sign .since { font-size: 11px; letter-spacing: .4em; color: var(--gold); }
+  .sign h1 { font-family: "Zen Old Mincho", serif; font-weight: 900; font-size: 34px; letter-spacing: .3em; line-height: 1.4; margin: 4px 0 2px; padding-left: .3em; }
+  .sign h1 ruby rt { font-size: 10px; letter-spacing: .3em; color: var(--gold); }
+  .sign .kind { font-size: 12px; letter-spacing: .5em; }
+  .sign nav { margin-top: 18px; display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 22px; font-size: 13px; }
+  .sign nav a { text-decoration: none; color: var(--paper-2); }
+  .sign nav a:hover { color: var(--gold); }
+
+  /* 写真 */
+  .hero { position: relative; background: var(--green-dark); padding: 20px; }
+  .hero .frame { border: 1px solid var(--gold); padding: 8px; max-width: 980px; margin-inline: auto; }
+  .hero .ph { aspect-ratio: 16/10; overflow: hidden; filter: sepia(.18) saturate(.9); }
+  .hero p { color: var(--paper-2); text-align: center; font-size: 13px; margin-top: 14px; font-family: "Zen Old Mincho", serif; letter-spacing: .3em; }
+
+  section { padding: 72px 0; }
+  .title { text-align: center; margin-bottom: 40px; }
+  .title h2 { font-family: "Zen Old Mincho", serif; font-weight: 700; font-size: 24px; letter-spacing: .3em; padding-left: .3em; display: inline-flex; align-items: center; gap: 16px; }
+  .title h2::before, .title h2::after { content: ""; width: 28px; height: 1px; background: var(--ink); }
+  .title p { font-size: 11px; letter-spacing: .4em; color: var(--sub); }
+
+  /* ご挨拶（縦書き） */
+  .greeting .wrap { display: grid; gap: 40px; align-items: center; }
+  .tate {
+    writing-mode: vertical-rl; font-family: "Zen Old Mincho", serif;
+    font-size: 16px; line-height: 2.3; height: 23em; margin-inline: auto; letter-spacing: .12em;
+  }
+  .tate .sig { margin-top: 3em; font-size: 13px; color: var(--sub); }
+  .greeting .ph { aspect-ratio: 3/4; overflow: hidden; filter: sepia(.15); max-width: 360px; margin-inline: auto; width: 100%; }
+
+  /* 名物 */
+  .famous { background: var(--green); color: var(--paper); }
+  .famous .title h2::before, .famous .title h2::after { background: var(--gold); }
+  .famous .title p { color: var(--gold); }
+  .famous-grid { display: grid; gap: 40px; }
+  .dish .ph { aspect-ratio: 1; overflow: hidden; border: 6px solid var(--paper); }
+  .dish h3 { font-family: "Zen Old Mincho", serif; font-size: 19px; margin-top: 16px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .dish h3 span { font-size: 15px; color: var(--gold); white-space: nowrap; }
+  .dish p { font-size: 14px; color: var(--paper-2); }
+
+  /* お品書き（紙のメニュー） */
+  .menu-card {
+    background: #fbf6ea; border: 1px solid var(--gold); outline: 6px solid #fbf6ea; outline-offset: 0;
+    box-shadow: 0 0 0 7px var(--gold); padding: 40px 24px; max-width: 760px; margin-inline: auto;
+  }
+  .menu-card .cols { display: grid; gap: 36px; }
+  .menu-card h3 { font-family: "Zen Old Mincho", serif; text-align: center; font-size: 17px; letter-spacing: .4em; color: var(--red); margin-bottom: 12px; }
+  .menu-card li { display: flex; align-items: baseline; gap: 8px; padding: 5px 0; font-size: 15px; }
+  .menu-card li::after { content: ""; order: 1; flex: 1; border-bottom: 1px dotted #a89880; transform: translateY(-4px); }
+  .menu-card li .p { order: 2; font-family: "Zen Old Mincho", serif; }
+  .menu-card li small { font-size: 11px; color: var(--sub); margin-left: 4px; }
+  .menu-card .foot { text-align: center; font-size: 12px; color: var(--sub); margin-top: 28px; }
+  .set { margin-top: 28px; border: 1px solid var(--red); color: var(--red); text-align: center; padding: 10px; font-size: 14px; }
+
+  /* お知らせ（黒板風） */
+  .board { background: #26332c; color: #eee; padding: 28px 24px; border: 10px solid #6b4e33; max-width: 760px; margin-inline: auto; font-family: "Zen Old Mincho", serif; }
+  .board li { padding: 10px 0; border-bottom: 1px dashed rgba(255,255,255,.2); display: grid; gap: 0; }
+  .board time { color: #e6c86e; font-size: 13px; }
+
+  /* 店舗 */
+  .info .wrap { display: grid; gap: 40px; }
+  .info table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .info th, .info td { padding: 12px 4px; border-bottom: 1px solid #cbbd9f; text-align: left; vertical-align: top; }
+  .info th { width: 6.5em; font-weight: 400; color: var(--sub); }
+  .info .ph { aspect-ratio: 4/3; overflow: hidden; filter: sepia(.2); }
+  .rules { margin-top: 20px; font-size: 13px; color: var(--sub); }
+
+  footer { background: var(--green-dark); color: var(--paper-2); text-align: center; padding: 40px 0 88px; font-size: 12px; }
+  footer .old { font-size: 22px; letter-spacing: .3em; color: var(--paper); display: block; margin-bottom: 6px; }
+
+  .tel-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: var(--red); color: #fff; text-align: center; padding: 12px; font-size: 14px; text-decoration: none; letter-spacing: .15em; }
+
+  @media (min-width: 560px) {
+    .famous-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .dish h3 { flex-direction: column; gap: 0; }
+  }
+  @media (min-width: 760px) {
+    .sign h1 { font-size: 46px; }
+    .greeting .wrap { grid-template-columns: 1fr 1fr; }
+    .famous-grid { grid-template-columns: repeat(3, 1fr); }
+    .menu-card { padding: 56px 56px; }
+    .menu-card .cols { grid-template-columns: 1fr 1fr; gap: 24px 56px; }
+    .info .wrap { grid-template-columns: 1.1fr .9fr; }
+    .tel-bar { display: none; }
+    footer { padding-bottom: 40px; }
+    section { padding: 96px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-bar">架空の店舗で作成した制作サンプルです。写真はUnsplashの素材を使用しています。<a href="index.html" style="color:inherit;font-weight:700;margin-left:8px">← NORENのページに戻る</a></div>
+
+<header class="sign">
+  <p class="since">SINCE 1978</p>
+  <h1><ruby>純喫茶 灯<rt>じゅんきっさ あかり</rt></ruby></h1>
+  <p class="kind">珈琲・軽食・甘味</p>
+  <nav>
+    <a href="#greeting">ご挨拶</a>
+    <a href="#famous">名物</a>
+    <a href="#menu">お品書き</a>
+    <a href="#news">お知らせ</a>
+    <a href="#info">営業のご案内</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="frame">
+    <div class="ph"><img src="a-hero.jpg" alt="昔ながらの喫茶店の店内"></div>
+  </div>
+  <p>一杯の珈琲に、ひと息の時間を。</p>
+</div>
+
+<main>
+  <section class="greeting" id="greeting">
+    <div class="wrap">
+      <div class="title" style="grid-column:1/-1;margin-bottom:0"><h2>ご挨拶</h2><p>GREETING</p></div>
+      <div class="tate">
+        <p>昭和五十三年、この町の角に<br>小さな喫茶店を開きました。<br>ネルで一杯ずつ落とす珈琲と<br>先代から変わらないプリンの味を<br>いまも毎日お出ししております。<br>どうぞごゆっくり、おくつろぎください。</p>
+        <p class="sig">二代目店主</p>
+      </div>
+      <div class="ph"><img src="a-greet.jpg" alt="ドリップで淹れる珈琲" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="famous" id="famous">
+    <div class="wrap">
+      <div class="title"><h2>名物</h2><p>SPECIALTIES</p></div>
+      <div class="famous-grid">
+        <div class="dish">
+          <div class="ph"><img src="a-d1.jpg" alt="固めのプリン" loading="lazy"></div>
+          <h3>固めのプリン <span>¥500</span></h3>
+          <p>卵と牛乳、砂糖だけ。先代のレシピのまま、少し苦めのカラメルで。</p>
+        </div>
+        <div class="dish">
+          <div class="ph"><img src="a-d2.jpg" alt="カフェオレ" loading="lazy"></div>
+          <h3>カフェオレ <span>¥600</span></h3>
+          <p>ネルで濃いめに落とした珈琲に、温めた牛乳をたっぷりと。</p>
+        </div>
+        <div class="dish">
+          <div class="ph"><img src="a-d3.jpg" alt="アイス珈琲" loading="lazy"></div>
+          <h3>水出しアイス珈琲 <span>¥600</span></h3>
+          <p>ひと晩かけて落とした、まろやかな一杯。生クリームを添えて。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="wrap">
+      <div class="title"><h2>お品書き</h2><p>MENU</p></div>
+      <div class="menu-card">
+        <div class="cols">
+          <div>
+            <h3>珈琲</h3>
+            <ul>
+              <li>灯ブレンド<span class="p">550</span></li>
+              <li>炭火焙煎<span class="p">600</span></li>
+              <li>水出しアイス珈琲<span class="p">600</span></li>
+              <li>カフェオレ<span class="p">600</span></li>
+              <li>ウインナー珈琲<span class="p">650</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>喫茶</h3>
+            <ul>
+              <li>クリームソーダ<small>緑・赤・青</small><span class="p">700</span></li>
+              <li>ミルクセーキ<span class="p">650</span></li>
+              <li>レモンスカッシュ<span class="p">600</span></li>
+              <li>ロイヤルミルクティー<span class="p">600</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>軽食</h3>
+            <ul>
+              <li>ナポリタン<span class="p">950</span></li>
+              <li>ミックスサンド<span class="p">850</span></li>
+              <li>ピザトースト<span class="p">800</span></li>
+              <li>玉子トースト<span class="p">650</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>甘味</h3>
+            <ul>
+              <li>固めのプリン<span class="p">500</span></li>
+              <li>プリン・ア・ラ・モード<span class="p">900</span></li>
+              <li>ホットケーキ<small>二枚</small><span class="p">750</span></li>
+              <li>珈琲ゼリー<span class="p">550</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="set">午前のサービス　お飲み物にトースト・ゆで玉子つき（〜11時）</p>
+        <p class="foot">価格は税込です</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="news" style="padding-top:0">
+    <div class="wrap">
+      <div class="title"><h2>お知らせ</h2><p>NEWS</p></div>
+      <ul class="board">
+        <li><time>令和八年 九月二十日</time>十月は第三日曜日も休ませていただきます</li>
+        <li><time>令和八年 九月一日</time>秋の限定「栗のプリン」はじめました（なくなり次第終了）</li>
+        <li><time>令和八年 八月五日</time>お盆も休まず営業いたします</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="info" id="info" style="background:var(--paper-2)">
+    <div class="wrap">
+      <div>
+        <div class="title" style="text-align:left;margin-bottom:24px"><h2 style="padding-left:0">営業のご案内</h2></div>
+        <table>
+          <tr><th>所在地</th><td>〒000-0000 〇〇市〇〇町4-5-6</td></tr>
+          <tr><th>最寄駅</th><td>〇〇駅 北口より徒歩3分</td></tr>
+          <tr><th>営業時間</th><td>7:30〜19:00（ラストオーダー18:30）</td></tr>
+          <tr><th>定休日</th><td>日曜日・祝日</td></tr>
+          <tr><th>お席</th><td>カウンター5席・テーブル16席</td></tr>
+          <tr><th>電話</th><td>000-000-0000</td></tr>
+        </table>
+        <p class="rules">※ 店内は全席禁煙です。<br>※ ご予約は承っておりません。お電話でのお問い合わせはお気軽にどうぞ。<br>※ お支払いは現金・交通系ICがご利用いただけます。</p>
+      </div>
+      <div class="ph"><img src="a-info.jpg" alt="店内のテーブル席" loading="lazy"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span class="old">純喫茶 灯</span>
+  <p>〒000-0000 〇〇市〇〇町4-5-6　電話 000-000-0000</p>
+  <p style="margin-top:14px;opacity:.7">© 純喫茶 灯（架空の店舗・制作サンプル）　Photos: Unsplash　／　Site by NOREN</p>
+</footer>
+
+<a class="tel-bar" href="#info">お電話・道順はこちら</a>
+
+</body>
+</html>

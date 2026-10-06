@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>湯宿 ほのか（制作サンプル）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+/* 単一テーマ：夜の湯けむりと木の宿。暗い木肌に、湯の白と灯りの金。 */
+:root {
+  --bg: #1f1915; --wood: #2b221c; --paper: #f3ece1; --muted: #c8bba8; --line: #463a30;
+  --lamp: #e0b46a; --steam: rgba(255,255,255,.08);
+  --display: "Shippori Mincho", "Yu Mincho", serif;
+  --body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--paper); font-family: var(--body); line-height: 1.9; letter-spacing: .03em; padding-top: env(safe-area-inset-top, 0px); }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--lamp); outline-offset: 3px; }
+.wrap { max-width: 1040px; margin-inline: auto; padding-inline: clamp(16px, 5vw, 40px); }
+h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.5; text-wrap: balance; }
+p { margin: 0; }
+.demo-bar { background: #2347e0; color: #fff; font-size: 12px; text-align: center; padding: 6px 16px; }
+.demo-bar a { font-weight: 700; }
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(31,25,21,.92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 12px; flex-wrap: wrap; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 20px; letter-spacing: .2em; text-decoration: none; }
+.langs { display: flex; gap: 4px; }
+.langs button { background: transparent; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font: 500 13px var(--body); cursor: pointer; }
+.langs button[aria-pressed="true"] { background: var(--lamp); color: #1f1915; border-color: var(--lamp); }
+.hero { position: relative; overflow: hidden; padding-block: clamp(80px, 14vw, 150px); background: linear-gradient(180deg, rgba(31,25,21,.55), rgba(31,25,21,.35) 40%, var(--bg)), url("r-hero.jpg") center 45%/cover; }
+.steam span { position: absolute; bottom: -40px; width: 140px; height: 260px; border-radius: 50%; background: var(--steam); filter: blur(18px); animation: rise 9s linear infinite; }
+.steam span:nth-child(1) { left: 18%; animation-delay: 0s; }
+.steam span:nth-child(2) { left: 46%; animation-delay: -3s; width: 180px; }
+.steam span:nth-child(3) { left: 72%; animation-delay: -6s; }
+@keyframes rise { 0% { transform: translateY(0) scale(.8); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(-320px) scale(1.4); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .steam span { animation: none; opacity: .6; } }
+.hero .wrap { position: relative; display: grid; gap: 20px; justify-items: center; text-align: center; }
+.hero .place { color: var(--lamp); letter-spacing: .3em; font-size: 13px; }
+.hero h1 { font-size: clamp(30px, 5.6vw, 54px); font-weight: 700; }
+.hero p { max-width: 30em; color: var(--muted); }
+.btn { display: inline-block; background: var(--lamp); color: #1f1915; font-weight: 700; padding: 12px 28px; border-radius: 999px; text-decoration: none; }
+section { padding-block: clamp(64px, 9vw, 96px); border-top: 1px solid var(--line); }
+.sec-title { display: grid; gap: 6px; margin-bottom: 36px; }
+.sec-title .en { color: var(--lamp); font-size: 12px; letter-spacing: .3em; }
+.sec-title h2 { font-size: clamp(24px, 3.4vw, 32px); }
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.card { display: grid; gap: 12px; min-width: 0; }
+.photo { aspect-ratio: 4 / 3; max-width: 100%; border-radius: 4px; display: grid; place-items: end start; padding: 12px; font-size: 11px; color: rgba(255,255,255,.7); letter-spacing: .1em; }
+.p1 { background: url("r-bath.jpg") center/cover; }
+.p2 { background: url("r-room.jpg") center 60%/cover; }
+.p3 { background: url("r-food.jpg") center/cover; }
+.card h3 { font-size: 19px; }
+.card p { color: var(--muted); font-size: 15px; }
+.plans { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.plan-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; padding: 18px 4px; border-bottom: 1px solid var(--line); align-items: baseline; }
+.plan-row .yen { font-family: var(--display); font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.plan-row small { display: block; color: var(--muted); font-size: 13px; }
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.rule { border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: grid; gap: 6px; min-width: 0; }
+.rule b { color: var(--lamp); font-family: var(--display); }
+.rule span { color: var(--muted); font-size: 14px; }
+.access { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.mapbox { aspect-ratio: 16 / 10; max-width: 100%; border: 1px solid var(--line); border-radius: 6px; background:
+  repeating-linear-gradient(0deg, transparent 0 38px, rgba(255,255,255,.05) 38px 39px),
+  repeating-linear-gradient(90deg, transparent 0 38px, rgba(255,255,255,.05) 38px 39px), var(--wood);
+  display: grid; place-items: center; color: var(--muted); font-size: 13px; }
+dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 20px; font-size: 15px; }
+dt { color: var(--lamp); }
+dd { margin: 0; color: var(--muted); }
+.reserve { text-align: center; background: var(--wood); }
+.reserve .wrap { display: grid; gap: 18px; justify-items: center; }
+.reserve .tel { font-family: var(--display); font-size: clamp(26px, 4vw, 34px); font-weight: 700; letter-spacing: .08em; }
+footer { padding: 28px 16px calc(28px + env(safe-area-inset-bottom, 0px)); text-align: center; font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="demo-bar">これはNORENの制作サンプルです（架空の宿）。<a href="index.html">← NORENのページに戻る</a></div>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#">湯宿 ほのか</a>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="ja" aria-pressed="true">日本語</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="ko" aria-pressed="false">한국어</button>
+      <button type="button" data-lang="zh" aria-pressed="false">繁中</button>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="steam" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="wrap">
+    <p class="place" data-i18n="place">別府・鉄輪温泉</p>
+    <h1 data-i18n="h1">湯けむりの町で、何もしない夜を。</h1>
+    <p data-i18n="lead">全6室の小さな湯宿です。源泉かけ流しの貸切風呂と、温泉の蒸気で蒸しあげる「地獄蒸し」の夕食でお迎えします。</p>
+    <a class="btn" href="#reserve" data-i18n="cta">空室を問い合わせる</a>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-title"><span class="en">STAY</span><h2 data-i18n="s1">宿の楽しみ</h2></div>
+    <div class="grid3">
+      <div class="card"><div class="photo p1" role="img" aria-label="湯けむり"></div><h3 data-i18n="c1t">源泉かけ流しの貸切風呂</h3><p data-i18n="c1p">2つの貸切風呂は、空いていればいつでも鍵をかけて入れます。予約はいりません。</p></div>
+      <div class="card"><div class="photo p2" role="img" aria-label="和室"></div><h3 data-i18n="c2t">畳のお部屋</h3><p data-i18n="c2p">全室に湯けむりが見える窓があります。2〜4名さまでご利用いただけます。</p></div>
+      <div class="card"><div class="photo p3" role="img" aria-label="海の幸"></div><h3 data-i18n="c3t">海の幸と地獄蒸しの夕食</h3><p data-i18n="c3p">別府湾の魚のお造りと、地元の野菜を温泉の蒸気で蒸しあげた地獄蒸しをお出しします。</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-title"><span class="en">PLAN</span><h2 data-i18n="s2">宿泊プラン（1名あたり・税込）</h2></div>
+    <div class="plans">
+      <div class="plan-row"><div><span data-i18n="pl1">1泊朝食</span><small data-i18n="pl1s">夕食は鉄輪の町歩きで</small></div><span class="yen">¥9,800〜</span></div>
+      <div class="plan-row"><div><span data-i18n="pl2">1泊2食・地獄蒸し御膳</span><small data-i18n="pl2s">いちばん人気のプラン</small></div><span class="yen">¥15,400〜</span></div>
+      <div class="plan-row"><div><span data-i18n="pl3">素泊まり・湯治</span><small data-i18n="pl3s">3泊以上は1泊ごとに割引</small></div><span class="yen">¥6,600〜</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-title"><span class="en">ONSEN GUIDE</span><h2 data-i18n="s3">はじめての温泉でも安心</h2></div>
+    <div class="rules">
+      <div class="rule"><b data-i18n="r1t">体を洗ってから</b><span data-i18n="r1p">湯船に入る前に、かけ湯をして体を流してください。</span></div>
+      <div class="rule"><b data-i18n="r2t">タオルは湯船に入れない</b><span data-i18n="r2p">タオルは頭の上か、湯船の外に置いてください。</span></div>
+      <div class="rule"><b data-i18n="r3t">タトゥーについて</b><span data-i18n="r3p">貸切風呂なので、タトゥーのある方もご利用いただけます。</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap access">
+    <div>
+      <div class="sec-title"><span class="en">ACCESS</span><h2 data-i18n="s4">アクセス</h2></div>
+      <dl>
+        <dt data-i18n="a1">住所</dt><dd data-i18n="a1v">大分県別府市鉄輪（サンプル）</dd>
+        <dt data-i18n="a2">バス</dt><dd data-i18n="a2v">別府駅からバスで約20分、「鉄輪」下車 徒歩3分</dd>
+        <dt data-i18n="a3">チェックイン</dt><dd>15:00〜20:00 / OUT 10:00</dd>
+        <dt data-i18n="a4">駐車場</dt><dd data-i18n="a4v">無料・4台</dd>
+      </dl>
+    </div>
+    <div class="mapbox" data-i18n="map">ここにGoogleマップが入ります</div>
+  </div>
+</section>
+
+<section class="reserve" id="reserve">
+  <div class="wrap">
+    <div class="sec-title"><span class="en">RESERVATION</span><h2 data-i18n="s5">ご予約・お問い合わせ</h2></div>
+    <p class="tel">0977-00-0000</p>
+    <p data-i18n="res">お電話は9:00〜20:00。LINEとメールでは24時間受け付けています。</p>
+    <a class="btn" href="#" data-i18n="line">LINEで空室を聞く</a>
+  </div>
+</section>
+
+<footer>湯宿 ほのか（架空の宿・制作サンプル） ｜ Site by NOREN</footer>
+
+<script>
+const T = {
+  en: { place:"Kannawa Onsen, Beppu", h1:"A quiet night in the town of hot-spring steam.", lead:"A small inn with six rooms. Enjoy private open-flow hot spring baths and a dinner of local food steamed with natural onsen steam (jigoku-mushi).", cta:"Check availability",
+    s1:"What to enjoy", c1t:"Private hot spring baths", c1p:"Two private baths, no booking needed. If it's free, just lock the door and enjoy.", c2t:"Japanese tatami rooms", c2p:"Every room has a window facing the rising steam. For 2 to 4 guests.", c3t:"Seafood and jigoku-mushi dinner", c3p:"Fresh sashimi from Beppu Bay and local vegetables steamed with natural hot spring steam.",
+    s2:"Plans (per person, tax incl.)", pl1:"Room with breakfast", pl1s:"Explore Kannawa for dinner", pl2:"Dinner & breakfast: Jigoku-mushi set", pl2s:"Our most popular plan", pl3:"Room only / long stay", pl3s:"Discount for 3 nights or more",
+    s3:"First time at an onsen?", r1t:"Rinse before entering", r1p:"Please pour hot water over your body before getting into the bath.", r2t:"Keep towels out of the water", r2p:"Place your towel on your head or outside the bath.", r3t:"Tattoos", r3p:"Our baths are private, so guests with tattoos are welcome.",
+    s4:"Access", a1:"Address", a1v:"Kannawa, Beppu, Oita (sample)", a2:"Bus", a2v:"About 20 min by bus from Beppu Station. Get off at \"Kannawa\", 3 min walk.", a3:"Check-in", a4:"Parking", a4v:"Free, 4 cars", map:"Google Map goes here",
+    s5:"Reservations", res:"Phone: 9:00–20:00. LINE and email are open 24 hours.", line:"Ask on LINE" },
+  ko: { place:"벳푸・간나와 온천", h1:"온천 증기가 피어오르는 마을에서, 아무것도 하지 않는 밤을.", lead:"객실 6개의 작은 온천 여관입니다. 원천 그대로의 전세 온천과, 온천 증기로 쪄낸 '지고쿠무시' 저녁 식사로 맞이합니다.", cta:"빈방 문의하기",
+    s1:"여관의 즐거움", c1t:"원천 전세 온천", c1p:"전세 온천 2곳은 비어 있으면 언제든 문을 잠그고 이용할 수 있습니다. 예약은 필요 없습니다.", c2t:"다다미 객실", c2p:"모든 객실에서 온천 증기가 보입니다. 2~4명까지 이용 가능합니다.", c3t:"해산물과 지고쿠무시 저녁 식사", c3p:"벳푸만의 신선한 회와, 온천 증기로 찐 지역 채소를 준비합니다.",
+    s2:"숙박 플랜 (1인・세금 포함)", pl1:"조식 포함", pl1s:"저녁은 간나와 거리 산책을 즐기며", pl2:"조석식 포함・지고쿠무시 정식", pl2s:"가장 인기 있는 플랜", pl3:"숙박만・장기 체류", pl3s:"3박 이상은 1박마다 할인",
+    s3:"처음 온천에 오셨나요?", r1t:"몸을 먼저 씻어 주세요", r1p:"탕에 들어가기 전에 몸에 물을 끼얹어 주세요.", r2t:"수건은 탕에 넣지 마세요", r2p:"수건은 머리 위나 탕 밖에 두세요.", r3t:"타투에 대하여", r3p:"전세 온천이므로 타투가 있는 분도 이용하실 수 있습니다.",
+    s4:"오시는 길", a1:"주소", a1v:"오이타현 벳푸시 간나와 (샘플)", a2:"버스", a2v:"벳푸역에서 버스로 약 20분, '간나와' 하차 후 도보 3분", a3:"체크인", a4:"주차장", a4v:"무료・4대", map:"여기에 구글 지도가 들어갑니다",
+    s5:"예약・문의", res:"전화는 9:00~20:00. LINE과 이메일은 24시간 접수합니다.", line:"LINE으로 빈방 묻기" },
+  zh: { place:"別府・鐵輪溫泉", h1:"在溫泉蒸氣繚繞的小鎮，度過悠閒的夜晚。", lead:"僅有6間客房的小型溫泉旅館。以源泉放流的包租浴池，以及用溫泉蒸氣蒸煮的「地獄蒸」晚餐迎接您。", cta:"查詢空房",
+    s1:"旅館的樂趣", c1t:"源泉放流包租浴池", c1p:"兩座包租浴池只要空著，隨時可以上鎖使用，不需預約。", c2t:"榻榻米客房", c2p:"每間客房都能看到溫泉蒸氣。可供2至4位入住。", c3t:"海鮮與地獄蒸晚餐", c3p:"別府灣的新鮮生魚片，以及用溫泉蒸氣蒸煮的在地蔬菜。",
+    s2:"住宿方案（每人・含稅）", pl1:"附早餐", pl1s:"晚餐可在鐵輪街上漫遊享用", pl2:"附早晚餐・地獄蒸御膳", pl2s:"最受歡迎的方案", pl3:"純住宿・湯治長住", pl3s:"連住3晚以上每晚折扣",
+    s3:"第一次泡溫泉也安心", r1t:"先沖洗身體", r1p:"進入浴池前，請先用熱水沖洗身體。", r2t:"毛巾不要放進浴池", r2p:"請將毛巾放在頭上或浴池外。", r3t:"關於刺青", r3p:"本館為包租浴池，有刺青的客人也可使用。",
+    s4:"交通方式", a1:"地址", a1v:"大分縣別府市鐵輪（範例）", a2:"巴士", a2v:"從別府站搭巴士約20分鐘，於「鐵輪」下車步行3分鐘", a3:"入住", a4:"停車場", a4v:"免費・4輛", map:"這裡會放入Google地圖",
+    s5:"預約・洽詢", res:"電話受理 9:00～20:00。LINE與電子郵件24小時受理。", line:"用LINE查詢空房" }
+};
+const nodes = [...document.querySelectorAll("[data-i18n]")];
+nodes.forEach(n => n.dataset.ja = n.textContent);
+const htmlLang = { ja:"ja", en:"en", ko:"ko", zh:"zh-Hant" };
+document.querySelectorAll(".langs button").forEach(b => b.addEventListener("click", () => {
+  const lang = b.dataset.lang;
+  nodes.forEach(n => { n.textContent = lang === "ja" ? n.dataset.ja : (T[lang][n.dataset.i18n] ?? n.dataset.ja); });
+  document.querySelectorAll(".langs button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+  document.documentElement.lang = htmlLang[lang];
+}));
+</script>
+</body>
+</html>
